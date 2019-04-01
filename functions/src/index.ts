@@ -43,8 +43,9 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request: any,
         querySnapshot.forEach((doc: any) => { orders.push(doc.data()) });
         // now orders have something like this [ {...}, {...}, {...} ]
         // converting array to speech
-        let speech = `here are your orders \n`;
+      
         orders.forEach((eachOrder: any, index: any) => {
+          let speech = `here are your orders \n`;
           speech += `number ${index + 1} is ${eachOrder.RoomType} room for ${eachOrder.number} persons, ordered by ${eachOrder.name} contact email is ${eachOrder.email} \n`
         })
         agent.add(speech);
